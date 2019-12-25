@@ -11,4 +11,8 @@ public class RealSubject implements Subject {
     public void hello(String str) {
         System.out.println("hello: " + str);
     }
+
+    public void say(String msg) {
+        System.out.println("say:" + msg);
+    }
 }
