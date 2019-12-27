@@ -20,6 +20,7 @@ public class StateSupportPark {
                 e.printStackTrace();
             }
             while (init <= limit) {
+                System.out.println("t2 state>>>>" + t2.getState());
                 System.out.println("t1>>>" + (init++));
                 LockSupport.unpark(t2);
                 LockSupport.park();
@@ -29,6 +30,7 @@ public class StateSupportPark {
         t2= new Thread(() ->{
             while (init <= limit) {
                 LockSupport.park();
+                System.out.println("t1 state>>>>" + t1.getState());
                 System.out.println("t2>>>>>>>>>>>>>>>>>>>" + (init++));
                 LockSupport.unpark(t1);
             }
