@@ -7,6 +7,7 @@ public class StateSpin {
     private final static int limit = 9;
     private volatile static int init = 1;
 
+    ThreadLocal tl1 = new ThreadLocal();
     public static void main(String[] args) throws InterruptedException {
 
         Thread t1 = new Thread(() ->{

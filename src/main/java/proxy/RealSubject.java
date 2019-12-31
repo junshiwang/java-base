@@ -9,6 +9,7 @@ public class RealSubject implements Subject {
 
     @Override
     public void hello(String str) {
+        rent();
         System.out.println("hello: " + str);
     }
 

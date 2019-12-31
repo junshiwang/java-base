@@ -21,5 +21,7 @@ public class Client {
         
         System.out.println(subject.getClass().getName());
         subject.hello("world");
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>");
+        subject.rent();
     }
 }
