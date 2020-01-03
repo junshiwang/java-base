@@ -77,6 +77,8 @@ public class TestIO {
         //testIO.FileInputStreamTest();
         //testIO.FileReaderTest();
         //testIO.FileOutputStreamTest();
-        testIO.FileWriterTest();
+//        testIO.FileWriterTest();
+        String javaHome = System.getenv("JAVA_HOME");
+        System.out.println(javaHome);
     }
 }
