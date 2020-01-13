@@ -1,10 +1,15 @@
 package proxy;
 
+import sun.misc.ProxyGenerator;
+
+import java.io.FileOutputStream;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
 public class Client {
     public static void main(String[] args) {
+
+        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles","true" ); // 输出生成的代理类
         //    我们要代理的真实对象
         Subject realSubject = new RealSubject();
 
@@ -18,10 +23,19 @@ public class Client {
          * 第三个参数handler， 我们这里将这个代理对象关联到了上方的 InvocationHandler 这个对象上
          */
         Subject subject = (Subject) Proxy.newProxyInstance(realSubject.getClass().getClassLoader(), realSubject.getClass().getInterfaces(), handler);
-        
-        System.out.println(subject.getClass().getName());
+        System.out.println(">>>>>>>>>>>>>>>>>>>" + subject.getClass());
         subject.hello("world");
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>");
-        subject.rent();
+//        System.out.println(">>>>>>>>>>>>>>>>>>>>>");
+//        subject.rent();
+
+//        byte[] classFile = ProxyGenerator.generateProxyClass("$Proxy0", RealSubject.class.getInterfaces());
+//        String path = "/home/tic/java-workspace/javabase/target/classes/$Proxy0.class";
+//        try(FileOutputStream fos = new FileOutputStream(path)) {
+//            fos.write(classFile);
+//            fos.flush();
+//            System.out.println("代理类class文件写入成功");
+//        } catch (Exception e) {
+//            System.out.println("写文件错误");
+//        }
     }
 }

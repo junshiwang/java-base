@@ -1,7 +1,7 @@
 package proxy;
 
 public interface Subject {
-    public void rent();
-    
-    public void hello(String str);
+    void rent();
+
+    void hello(String str);
 }

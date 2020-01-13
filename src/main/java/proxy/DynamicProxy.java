@@ -5,6 +5,8 @@ import java.lang.reflect.Method;
 
 public class DynamicProxy implements InvocationHandler
 {
+    private DynamicProxy() {
+    }
     //　这个就是我们要代理的真实对象
     private Object subject;
     
