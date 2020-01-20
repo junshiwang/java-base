@@ -8,17 +8,15 @@ public class LockSupportTest1 {
 
     public static void main(String[] args) {
 
-        ThreadA ta = new ThreadA("ta");
+        new ThreadA("t1").start();
         // 获取主线程
         mainThread = Thread.currentThread();
 
         System.out.println(Thread.currentThread().getName()+" start ta");
-        ta.start();
-
         System.out.println(Thread.currentThread().getName()+" block");
         // 主线程阻塞
-        LockSupport.park(mainThread);
-
+        LockSupport.park();
+        System.out.println(mainThread.isInterrupted());
         System.out.println(Thread.currentThread().getName()+" continue");
     }
 
@@ -29,9 +27,12 @@ public class LockSupportTest1 {
         }
 
         public void run() {
-            System.out.println(Thread.currentThread().getName()+" wakup others");
-            // 唤醒“主线程”
-            LockSupport.unpark(mainThread);
+            try {
+                Thread.sleep(100);
+                mainThread.interrupt();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

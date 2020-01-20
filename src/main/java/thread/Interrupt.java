@@ -1,7 +1,5 @@
 package thread;
 
-import org.omg.PortableInterceptor.INACTIVE;
-
 public class Interrupt {
     public static void main(String[] args) throws Exception {  
         Thread t = new Thread(new Worker());  
@@ -15,18 +13,11 @@ public class Interrupt {
       
     public static class Worker implements Runnable {
         public void run() {
-            System.out.println("Worker started.");
-
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                System.out.println(Thread.currentThread().isInterrupted());
-                e.printStackTrace();
+            while (!Thread.currentThread().isInterrupted()) {
+                System.out.println("working");
             }
-
-
-            System.out.println("Worker stopped.");  
+            System.out.println(Thread.interrupted());
+            System.out.println(Thread.currentThread().isInterrupted());
         }  
     }  
 }  
